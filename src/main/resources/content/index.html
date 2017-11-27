@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="angular.js"></script>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title ></title>
+	<style type="text/css">
+		img{
+		  border-radius: 20px;
+   		  background: url(http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=cfb53f93c3177f3e0439f44e18a651b2/6609c93d70cf3bc7814060c9db00baa1cd112a56.jpg);
+   		  background-position: left top;
+	   	  background-repeat: repeat;
+	   	  padding: 20px; 
+	  	  width: 200px;
+      	  height: 150px;    		
+		}
+
+	</style>
+</head>
+<script type="text/javascript">
+/*传统事件页面加载完毕执行*/
+window.onload=function(){
+var name = document.getElementById("username");
+var show = document.getElementById("show");
+name.oninput=function(){
+	show.innerHTML=name.value;
+}
+}
+//获取该ng-app模块
+var modules = angular.module("cont",[]);
+//在该模块儿下   创建ThisPage作用域
+modules.controller("ThisPage",function($scope){
+	//angularjs与普通JS组合使用
+	$scope.alert=function(params){
+		return window.alert(params);
+	}
+});
+//在该模块儿下   创建ThisPage作用域
+modules.controller("middles",function($scope,$http){
+	$scope.data=[
+		{name:'2017秋季冬季新款衣服男卫衣外套连帽加绒韩版青少年帅气学生潮流',price:138,time:1246458783122},
+		{name:'秋冬季外套男士2017新款夹克男装韩版帅气牛仔修身春秋季衣服潮流',price:156.9,time:1146234783122},
+		{name:'南极人秋冬季男士保暖衬衫加绒加厚衬衣修身休闲长袖上衣服秋装潮',price:71.2,time:1346584783122}
+	];
+	//给输入框填入初始值
+	//$scope.imgstr = 'http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=cfb53f93c3177f3e0439f44e18a651b2/6609c93d70cf3bc7814060c9db00baa1cd112a56.jpg';
+	 $scope.imgstr = ' https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=4235618389,1171773057&fm=173&s=22C2F507500312F457A165BA0300C002&w=218&h=146&img.JPEG';
+	/**angularjs 发Ajax请求*/
+	var url="https://www.baidu.com/";
+	$http.get(url,
+			{
+				params:{'test':'tests'},
+				responseType:'json'
+			}).then(
+				//第一个方法访问成功时调用
+				function(retn){
+					console.info("调用url"+url+"返回数据"+retn.data);
+				},
+				//第二个方法访问出错时调用
+				function(retn){
+					console.info("调用 url:  "+url+"   失败");
+				});
+	});
+</script>
+<body ng-app="cont" ng-controller="ThisPage">
+<!--传统的事件-->
+<input type="text" name="" id="username"></br>
+<div id="show"></div></br>
+<!--angularjs绑定事件-->
+<input ng-model="names"></br>
+<div ng-bind="names"></div></br>
+<!--angularjs双向绑定事件-->
+<input ng-model="test"></br>
+<input ng-model="test"></br>
+<hr>
+</br>
+<!--angularjs表达式运算-->
+<input ng-model="a"  ng-init="a=0;b=0;c=0;d=0;e=0;f=0">*<input ng-model="b">=<span  ng-bind="a*b">输出结果:</span>
+</br></br>
+<!--angularjs表达式运算-->
+<input ng-model="c">*<input ng-model="d"><span  >输出结果={{c*d}}</span>
+
+</br>
+<!--angularjs表达式运算-->
+<input ng-model="e">*<input ng-model="f"><span  >输出结果{{e+"*"+f+"==>"+(e*f)}}</span>
+<hr>
+<!--angularjs循环数组-->
+<ul ng-init="arr=['hello','world','test','stings']">
+<li ng-repeat="var in arr">{{var}}</li>
+</ul>
+
+<hr>
+<!--angularjs循环Json-->
+<ul ng-init="obj={id:'12',name:'风清扬',age:190}">
+<li ng-repeat="var in obj">{{var}}</li>
+<br>
+<li ng-repeat="(key,value) in obj">#{{key+":"+value}}</li>
+</ul>
+<hr>
+
+
+<!--angularjs循环Json数组-->
+<ul ng-init="userList=[{id:'12',name:'风清扬',age:190},{id:'13',name:'独孤求败',age:800},{id:'15',name:'张三丰',age:150}]">
+<li ng-repeat="user in userList">id:{{user.id}} &nbsp; name:{{user.name}} &nbsp;&nbsp;&nbsp;  age:{{user.age}} <br></li>
+<br>
+</ul>
+<hr>
+<!--angularjs与普通JS组合使用-->
+<input type="" ng-model="username" name="">
+<input type="" ng-model="username" name="" ng-model="test">
+<input type="button" name="" value="弹出" ng-click="alert(username)">
+<!--angularjs格式化时间与金额-->
+<div  ng-controller="middles">
+	<ul>
+			<li ng-repeat="item in data">{{item.price|currency}} &nbsp;&nbsp;&nbsp;{{item.name}} &nbsp;&nbsp;&nbsp;{{item.time|date:"yyyy-MM-dd HH:mm:ss"}}</li>
+	</ul>
+
+	<!--angularjs加载图片       https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=4235618389,1171773057&fm=173&s=22C2F507500312F457A165BA0300C002&w=218&h=146&img.JPEG-->
+	<input type="" name="" ng-model="imgstr"><br>
+	<img ng-src="{{imgstr}}"  ng-clack/>
+</div>
+</body>
+</html>
+
+
