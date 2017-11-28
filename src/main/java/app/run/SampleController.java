@@ -14,7 +14,7 @@ import com.zgh.springboot.control.UserController;
 
 @Controller
 @EnableAutoConfiguration
-@ComponentScan(basePackages="com.zgh.springboot")
+@ComponentScan(basePackages = "com.zgh.springboot")
 @MapperScan("com.zgh.springboot.dao")
 public class SampleController {
 	private static Logger logger = Logger.getLogger(UserController.class);
@@ -26,13 +26,14 @@ public class SampleController {
 	}
 
 	static {
-		 String runtimePath = ClassLoader.getSystemResource("").getPath();
-		 String log4jPath = runtimePath+"log4j.properties";
-		 System.out.println("log4j:["+log4jPath+"]");
-		 PropertyConfigurator.configure(log4jPath);
+		String runtimePath = ClassLoader.getSystemResource("").getPath();
+		String log4jPath = runtimePath + "log4j.properties";
+		System.out.println("log4j:[" + log4jPath + "]");
+		PropertyConfigurator.configure(log4jPath);
 	}
+
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(new Object[] { SampleController.class}, args);
+		SpringApplication.run(new Object[] { SampleController.class }, args);
 		logger.debug("Open URL - http://localhost:9001  to access your application");
 	}
 }
