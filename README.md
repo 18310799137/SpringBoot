@@ -1,2 +1,6 @@
 # SpringBoot
-自己建立的工程
+SpringBoot是一个重量级框架，使用却非常简单，为开发带来很大的遍历。
+使用SpringBoot做为开发框架，框架中内置了tomcat容器，启动项目只需一个标有特殊注解的main函数启动类即可启动项目
+1.引入Springboot依赖
+2.为本工程新建配置文件，SpringBoot工程使用配置文件yml后缀 或者 properties代替 Springmvc中的application.xml文件，其余均与Springmvc大同小异。只是SpringBoot使用的配置文件比Springmvc少的多，甚至可以认为就是嫌配置文件太多而开发的，因为确实配置很少
+3.新建Boot启动类，并启动工程即可
