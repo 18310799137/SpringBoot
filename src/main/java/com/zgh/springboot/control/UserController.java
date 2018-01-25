@@ -13,7 +13,7 @@ import com.zgh.springboot.entity.User;
  *  
  */
 @Controller
-@RequestMapping({ "/user" })
+@RequestMapping("/mvcRest")
 public class UserController {
 	private static Logger logger = Logger.getLogger(UserController.class);
 	@Autowired
@@ -21,9 +21,10 @@ public class UserController {
 
 	@RequestMapping(value = "/queryUser")
 	@ResponseBody
-	public String queryUser() {
-		logger.debug("RequestMapping : [ user/queryUser ]is run");
+	public User queryUser() {
+		logger.debug("RequestMapping : [ mvcRest/queryUser ]  run");
 		User user = userMapper.findUserByName("zhangsan");
-		return user.toString();
+		return user;
+		//打开浏览器访问 http://localhost:9001/mvcRest/queryUser 返回格式为: {"id":1,"name":"zhangsan","age":30}
 	}
 }
