@@ -10,10 +10,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @EnableScheduling
-
-public class QuartzJob {
+public class QuartzJob2 {
 	
-	private static Logger logger = Logger.getLogger(QuartzJob.class);
+	private static Logger logger = Logger.getLogger(QuartzJob2.class);
 	/*
 		表达式  								意义
 	"0 0 12 * * ?"	 				每天中午12点触发
@@ -48,10 +47,8 @@ public class QuartzJob {
 	 * @throws InterruptedException
 		 * 
 		 */
-	
 	    @Scheduled(cron = "0/5 * * ? * *")
 	    public void cronJob() throws InterruptedException {
-	    	Thread.sleep(20000);
 	    	logger.debug("[Cron Job Execute]"+new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date()));
 		}
 }
