@@ -10,15 +10,11 @@ import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zgh.springboot.filter.MyFilter;
 import com.zgh.springboot.listener.MyListener;
 import com.zgh.springboot.servlet.MyServlet;
 
-@Controller
 // 在标记Configuration的注解中 可以做些初始化工作 ，生产Bean，初始化配置等
 @Configuration
 public class BootConfig {
@@ -33,17 +29,6 @@ public class BootConfig {
 		ServletRegistrationBean registration = new ServletRegistrationBean(new ServletContainer(), "/rest/*");
 		registration.addInitParameter("jersey.config.server.provider.packages", "com.zgh.springboot.rest.control");
 		return registration;
-	}
-
-	/**
-	 * @description: 欢迎界面
-	 * @author FreeGuardian
-	 * @return
-	 */
-	@RequestMapping("/")
-	@ResponseBody
-	String home() {
-		return "<center><h1>Hello World!</h1><center>";
 	}
 
 	/**
