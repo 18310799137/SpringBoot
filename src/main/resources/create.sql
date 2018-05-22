@@ -4,4 +4,4 @@ create table t_user(id int,name varchar(20),age int);
 
 insert into t_user values(1,'zhangsan',30);
 
-insert into t_user values(2,'李四',30);
+insert into t_user values(2,'李四',30); 
